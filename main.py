@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, redirect
 from caesar import rotate_string
 
 app = Flask(__name__)
@@ -46,6 +46,8 @@ def encrypt():
     
     if validate_int(rot):
         rot = int(rot)
+    else:
+        return redirect('/')
     
     encrypted = rotate_string(text, rot)
     encrypted_html = "<h1>{0}</h1>".format(encrypted)
