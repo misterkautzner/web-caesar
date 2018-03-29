@@ -9,19 +9,19 @@ form = """
     <html>
         <head>
             <style>
-                form {
+                form {{
                     background-color:#eee;
                     padding: 20px;
                     margin: 0 auto;
                     width: 540px;
                     font: 16px sans-serif;
                     border-radius: 10px;
-                }
-                textarea {
+                }}
+                textarea {{
                     margin: 10px 0;
                     width: 540px;
                     height: 120px;
-                }
+                }}
             </style>
         </head>
         <body>
@@ -32,7 +32,7 @@ form = """
                 </label>
                 <br />
                 <br />
-                <input type="textarea" name="text" />
+                <textarea name="text">{0}</textarea>
                 <br />
                 <input type="submit" value="Submit Query" />
         </body>
@@ -50,9 +50,9 @@ def encrypt():
         return redirect('/')
     
     encrypted = rotate_string(text, rot)
-    encrypted_html = "<h1>{0}</h1>".format(encrypted)
+    #encrypted_html = "<h1>{0}</h1>".format(encrypted)
 
-    return encrypted_html
+    return form.format(encrypted)
 
 
 def validate_int(maybe_int):
@@ -65,6 +65,6 @@ def validate_int(maybe_int):
 
 @app.route('/')
 def index():
-    return form
+    return form.format('')
 
 app.run()
